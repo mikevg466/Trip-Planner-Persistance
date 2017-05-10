@@ -51,6 +51,20 @@ $(function () {
     })
     .catch(error => console.error(error));
 
+    $.ajax({
+      method: 'DELETE',
+      url: 'http://localhost:3000/api/days/2'
+})
+    .catch(error => console.error(error));
+
+    $.ajax({
+      method: 'POST',
+      url: 'http://localhost:3000/api/days/3/hotel',
+      data: {id: 5}
+    })
+    .catch(error => console.error(error));
+
+
     // make all the option tags (second arg of `forEach` is a `this` binding)
     // hotels.forEach(makeOption, $hotelSelect);
     // restaurants.forEach(makeOption, $restaurantSelect);
