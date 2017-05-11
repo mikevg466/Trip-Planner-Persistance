@@ -33,21 +33,43 @@ var dayModule = (function () {
     this.hotel = null;
     this.restaurants = [];
     this.activities = [];
+
+    // for days based on existing data
+    utilsModule.merge(data, this);
+
     $.ajax({
       method: 'POST',
       url: 'http://localhost:3000/api/days',
       data: data
     })
     .then(() => {
+      const hotelPromise = $.ajax({
+        method: 'GET',
+        url: 'http://localhost:3000/api/days/' + this.number + '/hotel'
+      });
+      const activityPromise = $.ajax({
+        method: 'GET',
+        url: 'http://localhost:3000/api/days/' + this.number + '/activity'
+      });
+      const restaurantPromise = $.ajax({
+        method: 'GET',
+        url: 'http://localhost:3000/api/days/' + this.number + '/restaurant'
+      });
 
+      return Promise.all([hotelPromise, activityPromise, restaurantPromise]);
+    })
+    .then(([hotelFound, activitiesFound, restaurantsFound]) => {
+      this.hotel = hotelFound;
+      this.activities = activitiesFound;
+      this.restaurants = restaurantsFound;
+
+      if (this.hotel) this.hotel = attractionsModule.getEnhanced(this.hotel);
+      this.restaurants = this.restaurants.map(attractionsModule.getEnhanced);
+      this.activities = this.activities.map(attractionsModule.getEnhanced);
+      tripModule.switchTo(this);
     })
     .catch(console.error.bind(console));
 
-    // for days based on existing data
-    utilsModule.merge(data, this);
-    if (this.hotel) this.hotel = attractionsModule.getEnhanced(this.hotel);
-    this.restaurants = this.restaurants.map(attractionsModule.getEnhanced);
-    this.activities = this.activities.map(attractionsModule.getEnhanced);
     // remainder of constructor
     this.buildButton().showButton();
   }
