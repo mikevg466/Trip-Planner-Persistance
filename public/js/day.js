@@ -118,10 +118,20 @@ var dayModule = (function () {
         break;
       default: console.error('bad type:', attraction);
     }
+    this.saveAttraction(attraction);
     // activating UI
     attraction.show();
   };
 
+  Day.prototype.saveAttraction = function(attraction){
+    $.ajax({
+      method: 'POST',
+      url: 'http://localhost:3000/api/days/' + this.number + '/' + attraction.type,
+      data: {
+        id: attraction.id
+      }
+    })
+  }
 
   // ~~~~~~~~~~~~~~~~~~~~~~~
     // Do not remove an attraction until you have removed it from the DB
@@ -141,9 +151,20 @@ var dayModule = (function () {
         break;
       default: console.error('bad type:', attraction);
     }
+    this.deleteAttraction(attraction);
     // deactivating UI
     attraction.hide();
   };
+
+  Day.prototype.deleteAttraction = function(attraction){
+    $.ajax({
+      method: 'DELETE',
+      url: 'http://localhost:3000/api/days/' + this.number + '/' + attraction.type,
+      data: {
+        id: attraction.id
+      }
+    })
+  }
 
   // globally accessible module methods
 

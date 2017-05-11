@@ -59,7 +59,7 @@ router.delete('/:id/hotel', (req, res, next) => {
       }
     })
     .then(hotelFound => {
-      dayFound.removeHotel(hotelFound);
+      dayFound.setHotel(null);
     })
   })
   .catch(next);
