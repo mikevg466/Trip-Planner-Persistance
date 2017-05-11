@@ -21,56 +21,36 @@ $(function () {
     // This looks like a great place to start AJAX work with a request for all attractions. Don't forget that these kinds of requests are async, so we won't have all of the attractions until it comes back, but once it comes back we can make the option tags
   // ~~~~~~~~~~~~~~~~~~~~~~~
 
-    $.ajax({
-      method: 'GET',
-      url: 'http://localhost:3000/api/hotels'
-    })
-    .then(function(hotelsArray){
-      hotelsArray.forEach(makeOption, $hotelSelect)
-      attractionsModule.loadEnhancedAttractions('hotels', hotelsArray)
-    })
-    .catch(error => console.error(error));
 
-    $.ajax({
-      method: 'GET',
-      url: 'http://localhost:3000/api/restaurants'
-    })
-    .then(function(restaurantsArray){
-      restaurantsArray.forEach(makeOption, $restaurantSelect)
-      attractionsModule.loadEnhancedAttractions('restaurants', restaurantsArray)
-    })
-    .catch(error => console.error(error));
+      $.ajax({
+        method: 'GET',
+        url: 'http://localhost:3000/api/hotels'
+      })
+      .then(function(hotelsArray){
+        hotelsArray.forEach(makeOption, $hotelSelect)
+        attractionsModule.loadEnhancedAttractions('hotels', hotelsArray)
+      })
+      .catch(error => console.error(error));
 
-    $.ajax({
-      method: 'GET',
-      url: 'http://localhost:3000/api/activities'
-    })
-    .then(function(activitiesArray){
-      activitiesArray.forEach(makeOption, $activitySelect)
-      attractionsModule.loadEnhancedAttractions('activities', activitiesArray)
-    })
-    .catch(error => console.error(error));
+      $.ajax({
+        method: 'GET',
+        url: 'http://localhost:3000/api/restaurants'
+      })
+      .then(function(restaurantsArray){
+        restaurantsArray.forEach(makeOption, $restaurantSelect)
+        attractionsModule.loadEnhancedAttractions('restaurants', restaurantsArray)
+      })
+      .catch(error => console.error(error));
 
-    $.ajax({
-      method: 'DELETE',
-      url: 'http://localhost:3000/api/days/2'
-})
-    .catch(error => console.error(error));
-
-    $.ajax({
-      method: 'POST',
-      url: 'http://localhost:3000/api/days/3/restaurant',
-      data: {id: 4}
-    })
-    .catch(error => console.error(error));
-
-    $.ajax({
-      method: 'DELETE',
-      url: 'http://localhost:3000/api/days/3/restaurant',
-      data: {id: 5}
-    })
-    .catch(error => console.error(error));
-
+      $.ajax({
+        method: 'GET',
+        url: 'http://localhost:3000/api/activities'
+      })
+      .then(function(activitiesArray){
+        activitiesArray.forEach(makeOption, $activitySelect)
+        attractionsModule.loadEnhancedAttractions('activities', activitiesArray)
+      })
+      .catch(error => console.error(error));
 
     // make all the option tags (second arg of `forEach` is a `this` binding)
     // hotels.forEach(makeOption, $hotelSelect);

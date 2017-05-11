@@ -147,7 +147,10 @@ router.delete('/:id/restaurant', (req, res, next) => {
 
 
 router.post('/', (req, res, next) => {
-  Day.create(req.body)
+  Day.findOrCreate({
+    where: {number: Number(req.body.number)},
+    defaults: {number: Number(req.body.number)}
+  })
   .then(dayCreated => {
     res.status(201).send('Day created successfully');
   })

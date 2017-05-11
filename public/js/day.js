@@ -25,7 +25,7 @@ var dayModule = (function () {
 
   // ~~~~~~~~~~~~~~~~~~~~~~~
     // If you follow the logic of `attractionsModule.getEnhanced` (try following it!), you will note that it depends on `loadEnhanceAttractions` to have run.
-    //Note that `loadEnhancedAttractions` is already being called for you in `/public/js/options.js` and that it utilizes another method given to us by the `attractionModule` (singular). 
+    //Note that `loadEnhancedAttractions` is already being called for you in `/public/js/options.js` and that it utilizes another method given to us by the `attractionModule` (singular).
   // ~~~~~~~~~~~~~~~~~~~~~~~
   function Day (data) {
     // for brand-new days
@@ -33,6 +33,12 @@ var dayModule = (function () {
     this.hotel = null;
     this.restaurants = [];
     this.activities = [];
+    $.ajax({
+      method: 'POST',
+      url: 'http://localhost:3000/api/days',
+      data: data
+    });
+
     // for days based on existing data
     utilsModule.merge(data, this);
     if (this.hotel) this.hotel = attractionsModule.getEnhanced(this.hotel);
