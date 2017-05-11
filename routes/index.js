@@ -4,10 +4,7 @@ var Hotel = require('../models').Hotel;
 var Restaurant = require('../models').Restaurant;
 var Activity = require('../models').Activity;
 
-router.use('/api/hotels', require('./hotels.js'));
-router.use('/api/restaurants', require('./restaurants.js'));
-router.use('/api/activities', require('./activities.js'));
-router.use('/api/days', require('./days.js'));
+router.use('/api', require('./api'));
 
 
 router.get('/', function(req, res, next) {

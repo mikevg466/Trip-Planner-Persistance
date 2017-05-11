@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const Activity = require('../models').Activity;
+const Activity = require('../../models').Activity;
 
 module.exports = router;
 
