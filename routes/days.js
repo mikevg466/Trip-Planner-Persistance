@@ -25,6 +25,20 @@ router.get('/:id', (req, res, next) => {
   .catch(next);
 })
 
+// get hotels for day
+router.get('/:id/hotel', (req, res, next) => {
+  Day.findOne({
+    where: {
+      number: req.params.id
+    }
+  })
+  .then((dayFound => {
+    dayFound.getHotel()
+    .then((hotelFound) => res.json(hotelFound))
+  }))
+  .catch(next);
+});
+
 //set a hotel
 router.post('/:id/hotel', (req, res, next) => {
   Day.findOne({
@@ -65,6 +79,20 @@ router.delete('/:id/hotel', (req, res, next) => {
   .catch(next);
 })
 
+// get activities for day
+router.get('/:id/activity', (req, res, next) => {
+  Day.findOne({
+    where: {
+      number: req.params.id
+    }
+  })
+  .then((dayFound => {
+    dayFound.getActivities()
+    .then((activitiesFound) => res.json(activitiesFound))
+  }))
+  .catch(next);
+});
+
 //add activities
 router.post('/:id/activity', (req, res, next) => {
   Day.findOne({
@@ -104,6 +132,20 @@ router.delete('/:id/activity', (req, res, next) => {
   })
   .catch(next);
 })
+
+// get restaurants for day
+router.get('/:id/restaurant', (req, res, next) => {
+  Day.findOne({
+    where: {
+      number: req.params.id
+    }
+  })
+  .then((dayFound => {
+    dayFound.getRestaurants()
+    .then((restaurantsFound) => res.json(restaurantsFound))
+  }))
+  .catch(next);
+});
 
 //add restaurants
 router.post('/:id/restaurant', (req, res, next) => {

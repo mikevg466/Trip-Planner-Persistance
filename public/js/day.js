@@ -37,7 +37,11 @@ var dayModule = (function () {
       method: 'POST',
       url: 'http://localhost:3000/api/days',
       data: data
-    });
+    })
+    .then(() => {
+
+    })
+    .catch(console.error.bind(console));
 
     // for days based on existing data
     utilsModule.merge(data, this);
