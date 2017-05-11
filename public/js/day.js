@@ -37,6 +37,7 @@ var dayModule = (function () {
     // for days based on existing data
     utilsModule.merge(data, this);
 
+    // $('button').prop('disabled', true);
     $.ajax({
       method: 'POST',
       url: 'http://localhost:3000/api/days',
@@ -67,6 +68,8 @@ var dayModule = (function () {
       this.restaurants = this.restaurants.map(attractionsModule.getEnhanced);
       this.activities = this.activities.map(attractionsModule.getEnhanced);
       tripModule.switchTo(this);
+
+      // $('button').prop('disabled', false);
     })
     .catch(console.error.bind(console));
 
