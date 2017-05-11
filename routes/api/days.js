@@ -61,11 +61,7 @@ router.get('/:id/restaurant', (req, res, next) => {
 
 //add restaurants
 router.post('/:id/restaurant', (req, res, next) => {
-  Restaurant.findOne({
-    where: {
-      id: req.body.id
-    }
-  })
+  Restaurant.findById(req.body.id)
   .then(restaurantFound => {
     req.day.addRestaurant(restaurantFound);
   })
@@ -74,11 +70,7 @@ router.post('/:id/restaurant', (req, res, next) => {
 
 //remove restaurants
 router.delete('/:id/restaurant', (req, res, next) => {
-  Restaurant.findOne({
-    where: {
-      id: req.body.id
-    }
-  })
+  Restaurant.findById(req.body.id)
   .then(restaurantFound => {
     req.day.removeRestaurant(restaurantFound);
   })
@@ -96,11 +88,7 @@ router.get('/:id/activity', (req, res, next) => {
 
 //add activities
 router.post('/:id/activity', (req, res, next) => {
-  Activity.findOne({
-    where: {
-      id: req.body.id
-    }
-  })
+  Activity.findById(req.body.id)
   .then(activityFound => {
     req.day.addActivity(activityFound);
   })
@@ -109,11 +97,7 @@ router.post('/:id/activity', (req, res, next) => {
 
 //remove activities
 router.delete('/:id/activity', (req, res, next) => {
-  Activity.findOne({
-    where: {
-      id: req.body.id
-    }
-  })
+  Activity.findById(req.body.id)
   .then(activityFound => {
     req.day.removeActivity(activityFound);
   })
@@ -132,11 +116,7 @@ router.get('/:id/hotel', (req, res, next) => {
 
 //set a hotel
 router.post('/:id/hotel', (req, res, next) => {
-  Hotel.findOne({
-    where: {
-      id: req.body.id
-    }
-  })
+  Hotel.findById(req.body.id)
   .then(hotelFound => {
     req.day.setHotel(hotelFound);
   })
@@ -145,11 +125,7 @@ router.post('/:id/hotel', (req, res, next) => {
 
 //remove a hotel
 router.delete('/:id/hotel', (req, res, next) => {
-  Hotel.findOne({
-    where: {
-      id: req.body.id
-    }
-  })
+  Hotel.findById(req.body.id)
   .then(hotelFound => {
     req.day.setHotel(null);
   })
