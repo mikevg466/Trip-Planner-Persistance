@@ -59,7 +59,14 @@ $(function () {
 
     $.ajax({
       method: 'POST',
-      url: 'http://localhost:3000/api/days/3/hotel',
+      url: 'http://localhost:3000/api/days/3/restaurant',
+      data: {id: 4}
+    })
+    .catch(error => console.error(error));
+
+    $.ajax({
+      method: 'DELETE',
+      url: 'http://localhost:3000/api/days/3/restaurant',
       data: {id: 5}
     })
     .catch(error => console.error(error));
